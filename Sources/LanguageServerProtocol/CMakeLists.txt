@@ -75,6 +75,7 @@ add_library(LanguageServerProtocol
   SupportTypes/ServerCapabilities.swift
   SupportTypes/SKCompletionOptions.swift
   SupportTypes/SymbolKind.swift
+  SupportTypes/SKCompletionOptions.swift
   SupportTypes/TextDocumentContentChangeEvent.swift
   SupportTypes/TextDocumentEdit.swift
   SupportTypes/TextDocumentIdentifier.swift
