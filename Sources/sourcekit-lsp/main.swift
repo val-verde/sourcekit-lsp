@@ -23,6 +23,14 @@ import SourceKitLSP
 import TSCBasic
 import TSCLibc
 
+#if canImport(CRT)
+import CRT
+
+internal let STDIN_FILENO = CRT.STDIN_FILENO
+internal let STDERR_FILENO = CRT.STDERR_FILENO
+internal let STDOUT_FILENO = CRT.STDOUT_FILENO
+#endif
+
 extension AbsolutePath: ExpressibleByArgument {
   public init?(argument: String) {
     if let cwd = localFileSystem.currentWorkingDirectory {
