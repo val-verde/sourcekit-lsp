@@ -248,6 +248,7 @@ private func makeJSONRPCBuildServer(client: MessageHandler, serverPath: Absolute
   let clientToServer = Pipe()
   let serverToClient = Pipe()
 
+#if !os(Windows)
   let connection = JSONRPCConnection(
     protocol: BuildServerProtocol.bspRegistry,
     inFD: serverToClient.fileHandleForReading,
@@ -259,6 +260,8 @@ private func makeJSONRPCBuildServer(client: MessageHandler, serverPath: Absolute
     // should be fixed systemically.
     withExtendedLifetime((clientToServer, serverToClient)) {}
   }
+#endif
+
   let process = Foundation.Process()
 
   if #available(OSX 10.13, *) {
@@ -272,7 +275,9 @@ private func makeJSONRPCBuildServer(client: MessageHandler, serverPath: Absolute
   process.standardInput = clientToServer
   process.terminationHandler = { process in
     log("build server exited: \(process.terminationReason) \(process.terminationStatus)")
+#if !os(Windows)
     connection.close()
+#endif
   }
 
   if #available(OSX 10.13, *) {
@@ -281,5 +286,9 @@ private func makeJSONRPCBuildServer(client: MessageHandler, serverPath: Absolute
     process.launch()
   }
 
+#if os(Windows)
+  preconditionFailure("makeJSONRPCBuildServer not implemented.")
+#else
   return connection
+#endif
 }
