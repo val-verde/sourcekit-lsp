@@ -65,6 +65,7 @@ public final class TestSourceKitServer {
         let clientToServer: Pipe = Pipe()
         let serverToClient: Pipe = Pipe()
 
+      #if !os(Windows)
         let clientConnection = JSONRPCConnection(
           protocol: MessageRegistry.lspProtocol,
           inFD: serverToClient.fileHandleForReading,
@@ -97,6 +98,9 @@ public final class TestSourceKitServer {
           serverToClient: serverToClient,
           clientConnection: clientConnection,
           serverConnection: serverConnection)
+      #else
+        preconditionFailure("Not implemented for Windows platform.")
+      #endif
     }
   }
 
