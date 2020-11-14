@@ -476,6 +476,7 @@ func makeJSONRPCClangServer(
   )
   
   return shim
+#endif
 }
 
 /// Clang build settings derived from a `FileBuildSettingsChange`.
