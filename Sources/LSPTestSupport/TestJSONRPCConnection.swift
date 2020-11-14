@@ -18,6 +18,7 @@ import XCTest
 // Workaround ambiguity with Foundation.
 public typealias Notification = LanguageServerProtocol.Notification
 
+#if !os(Windows)
 public final class TestJSONRPCConnection {
   public let clientToServer: Pipe = Pipe()
   public let serverToClient: Pipe = Pipe()
@@ -59,6 +60,7 @@ public final class TestJSONRPCConnection {
     serverConnection.close()
   }
 }
+#endif
 
 public struct TestLocalConnection {
   public let client: TestClient
