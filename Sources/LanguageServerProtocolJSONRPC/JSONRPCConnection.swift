@@ -18,6 +18,10 @@ import Foundation
 import LanguageServerProtocol
 import LSPLogging
 
+#if os(Windows)
+import CRT
+#endif
+
 /// A connection between a message handler (e.g. language server) in the same process as the connection object and a remote message handler (e.g. language client) that may run in another process using JSON RPC messages sent over a pair of in/out file descriptors.
 ///
 /// For example, inside a language server, the `JSONRPCConnection` takes the language service implemenation as its `receiveHandler` and itself provides the client connection for sending notifications and callbacks.
