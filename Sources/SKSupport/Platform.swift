@@ -18,7 +18,7 @@ extension Platform {
   public var dynamicLibraryExtension: String {
     switch self {
     case .darwin: return ".dylib"
-    case .linux, .android: return ".so"
+    case .linux, .musl, .android: return ".so"
     case .windows: return ".dll"
     }
   }
@@ -26,7 +26,7 @@ extension Platform {
   public var executableExtension: String {
     switch self {
     case .windows: return ".exe"
-    case .linux, .android, .darwin: return ""
+    case .linux, .musl, .android, .darwin: return ""
     }
   }
 }
