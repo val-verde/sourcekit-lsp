@@ -234,10 +234,10 @@ import Foundation
 if ProcessInfo.processInfo.environment["SWIFTCI_USE_LOCAL_DEPS"] == nil {
   // Building standalone.
   package.dependencies += [
-    .package(name: "IndexStoreDB", url: "https://github.com/val-verde/indexstore-db.git", .branch("val-verde-mainline")),
-    .package(name: "SwiftPM", url: "https://github.com/val-verde/swift-package-manager.git", .branch("val-verde-mainline")),
-    .package(url: "https://github.com/val-verde/swift-tools-support-core.git", .branch("val-verde-mainline")),
-    .package(url: "https://github.com/val-verde/swift-argument-parser.git", .branch("val-verde-mainline")),
+    .package(name: "IndexStoreDB", url: "https://github.com/val-verde/indexstore-db.git", .branch("val-verde-mainline-next")),
+    .package(name: "SwiftPM", url: "https://github.com/val-verde/swift-package-manager.git", .branch("val-verde-android-mainline-next")),
+    .package(url: "https://github.com/val-verde/swift-tools-support-core.git", .branch("val-verde-android-mainline-next")),
+    .package(url: "https://github.com/val-verde/swift-argument-parser.git", .branch("val-verde-mainline-next")),
   ]
 } else {
   package.dependencies += [
