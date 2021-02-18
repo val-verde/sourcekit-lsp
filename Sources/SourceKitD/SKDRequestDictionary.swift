@@ -63,7 +63,7 @@ public final class SKDRequestDictionary {
 extension SKDRequestDictionary: CustomStringConvertible {
   public var description: String {
     let ptr = sourcekitd.api.request_description_copy(dict)!
-    defer { free(ptr) }
+    defer { ptr.deallocate() }
     return String(cString: ptr)
   }
 }

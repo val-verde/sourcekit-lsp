@@ -45,7 +45,7 @@ public final class SKDResponseDictionary {
 extension SKDResponseDictionary: CustomStringConvertible {
   public var description: String {
     let ptr = sourcekitd.api.variant_description_copy(dict)!
-    defer { free(ptr) }
+    defer { ptr.deallocate() }
     return String(cString: ptr)
   }
 }

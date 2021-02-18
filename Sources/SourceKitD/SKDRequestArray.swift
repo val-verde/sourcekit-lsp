@@ -38,7 +38,7 @@ public final class SKDRequestArray {
 extension SKDRequestArray: CustomStringConvertible {
   public var description: String {
     let ptr = sourcekitd.api.request_description_copy(array)!
-    defer { free(ptr) }
+    defer { ptr.deallocate() }
     return String(cString: ptr)
   }
 }

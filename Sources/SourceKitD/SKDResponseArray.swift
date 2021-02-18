@@ -64,7 +64,7 @@ public final class SKDResponseArray {
 extension SKDResponseArray: CustomStringConvertible {
   public var description: String {
     let ptr = sourcekitd.api.variant_description_copy(array)!
-    defer { free(ptr) }
+    defer { ptr.deallocate() }
     return String(cString: ptr)
   }
 }
